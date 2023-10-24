@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #2d2d2d;
+            height: 100vh; /* Set the container's height to the viewport height */
+        }
+
+    </style>
+</head>
+<body>
+    <section class="container">
+        <input type="text" id="mainInput" />
+        <input type="button" id="mainButton" value="Submit"/>
+    </section>
+    
+
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyAgZwND9XsJthuzP2dx17OxGNLr85W5e8I",
+          authDomain: "html-firebase-b9a75.firebaseapp.com",
+          projectId: "html-firebase-b9a75",
+          storageBucket: "html-firebase-b9a75.appspot.com",
+          messagingSenderId: "750953787643",
+          appId: "1:750953787643:web:30a5115b7f7df87b8e005e"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const mainInput = document.querySelector("#mainInput");
+        const mainButton = document.querySelector("#mainButton");
+
+
+        mainButton.addEventListener('click',submitClick);    
+
+        function submitClick(){
+            setDoc(doc(db, "users", mainInput.value), {
+                name: "Los Angeles",
+                state: "CA",
+                country: "USA"
+            });
+
+        }
+
+      </script>
+</body>
+</html>
